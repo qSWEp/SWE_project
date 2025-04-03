@@ -1,0 +1,138 @@
+{% extends "store/base.html" %}
+{% block content %}
+
+<style>
+    #particles-delivery {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(45deg, #4a148c, #880e4f);
+    }
+
+    .delivery-container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 3rem;
+        border-radius: 25px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        backdrop-filter: blur(12px);
+        margin: 4rem auto;
+        max-width: 800px;
+        border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    h2 {
+        font-family: 'Tajawal', sans-serif;
+        color: #6a1b9a;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-bottom: 3px solid #ec407a;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-group label {
+        color: #8e24aa !important;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+        border: 2px solid #d81b60 !important;
+        border-radius: 12px;
+        padding: 1rem;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 15px rgba(216, 27, 96, 0.3);
+        border-color: #ad1457 !important;
+    }
+
+    .btn-primary {
+        background: linear-gradient(45deg, #9c27b0, #d81b60);
+        border: none;
+        padding: 1rem 2.5rem;
+        border-radius: 15px;
+        font-size: 1.1rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100%;
+        margin-top: 1.5rem;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(156, 39, 176, 0.4);
+    }
+
+    .form-check-label {
+        color: #6a1b9a !important;
+    }
+</style>
+
+<div id="particles-delivery"></div>
+
+<div class="container">
+    <div class="delivery-container">
+        <h2 class="text-center mb-5">🌹 بيانات التوصيل</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="row g-4">
+                {% for field in form %}
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                🚚 تأكيد بيانات التوصيل
+            </button>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    particlesJS('particles-delivery', {
+        particles: {
+            number: { value: 80 },
+            color: { value: "#ffffff" },
+            shape: { type: "circle" },
+            opacity: { value: 0.5 },
+            size: { value: 3 },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#ffffff",
+                opacity: 0.4,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 6,
+                direction: "none",
+                out_mode: "out"
+            }
+        },
+        interactivity: {
+            events: {
+                onhover: { enable: true, mode: "repulse" },
+                onclick: { enable: true, mode: "push" }
+            }
+        },
+        retina_detect: true
+    });
+</script>
+
+{% endblock %}

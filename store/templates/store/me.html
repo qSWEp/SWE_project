@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SWE   </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --dark: #2d3436;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .particles-js-canvas-el {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 60px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+
+        h1 {
+            color: var(--dark);
+            font-size: 3em;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+
+
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .social-card {
+            padding: 25px;
+            border-radius: 15px;
+            background: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: height 0.3s ease;
+        }
+
+
+        .social-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-card:hover::before {
+            height: 100%;
+            opacity: 0.1;
+        }
+
+        .social-card i {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .email-section {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .email-section a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+                width: 90%;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <div class="container" data-aos="zoom-in" data-aos-duration="800">
+        <h1 class="hvr-underline-from-center">مَن أنا؟ ✨</h1>
+        
+        <div class="social-grid">
+            <a href="https://x.com/pswex?s=21" target="_blank" class="social-card hvr-glow">
+                <h class="bi bi-twitter-x"></h>           
+                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                  </svg>
+            </a>
+            
+            <a href="https://github.com/qSWEp" target="_blank" class="social-card hvr-glow">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        </div>
+
+        <div class="email-section hvr-sweep-to-top">
+            <a href="mailto:abdiisrt@outlook.com">
+                <i class="fa-solid fa-paper-plane"></i>
+                abdiisrt@outlook.com
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        
+        particlesJS('particles-js',
+            {
+                "particles": {
+                    "number": {"value": 80},
+                    "color": {"value": "#ffffff"},
+                    "shape": {"type": "circle"},
+                    "opacity": {"value": 0.5},
+                    "size": {"value": 3},
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {"enable": true, "mode": "repulse"},
+                        "onclick": {"enable": true, "mode": "push"},
+                        "resize": true
+                    }
+                }
+            }
+        );
+    </script>
+    
+</body>
+</html>

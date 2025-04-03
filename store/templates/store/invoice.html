@@ -1,0 +1,145 @@
+{% extends "store/base.html" %}
+{% block content %}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<style>
+    .invoice-container {
+        background: linear-gradient(135deg, #f8f9fa 0%, #f3e5f5 100%);
+        border-radius: 25px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        padding: 3rem;
+        margin: 3rem auto;
+        max-width: 1000px;
+        border: 2px solid #e1bee7;
+    }
+
+    .invoice-header {
+        color: #6a1b9a;
+        text-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        border-bottom: 3px solid #d81b60;
+        padding-bottom: 1rem;
+        font-family: 'Tajawal', sans-serif;
+    }
+
+    .delivery-box {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .invoice-table {
+        border-collapse: separate;
+        border-spacing: 0;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .invoice-table thead {
+        background: linear-gradient(45deg, #8e24aa, #ad1457);
+        color: white;
+    }
+
+    .invoice-table th {
+        padding: 1.2rem;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+
+    .invoice-table td {
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.95);
+        border-bottom: 2px solid #f3e5f5;
+    }
+
+    .total-box {
+        background: linear-gradient(45deg, #8e24aa, #ad1457);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .fa-icon {
+        margin-left: 8px;
+        font-size: 1.2em;
+    }
+</style>
+
+<div class="container">
+    <div class="invoice-container animate__animated animate__fadeInUp">
+        <h2 class="invoice-header text-center mb-5">
+            <i class="fa-solid fa-receipt fa-icon"></i>فاتورة الطلب
+        </h2>
+        
+        {% if delivery_info %}
+        <div class="delivery-box">
+            <h5 class="text-purple mb-4">
+                <i class="fa-solid fa-truck-fast fa-icon"></i>بيانات التوصيل:
+            </h5>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <p class="mb-3"><i class="fa-solid fa-location-dot"></i> العنوان: {{ delivery_info.address }}</p>
+                    <p class="mb-3"><i class="fa-solid fa-city"></i> المدينة: {{ delivery_info.city }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="mb-3"><i class="fa-solid fa-envelope"></i> الرمز البريدي: {{ delivery_info.postal_code }}</p>
+                    <p class="mb-0"><i class="fa-solid fa-phone"></i> الهاتف: {{ delivery_info.phone }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <h5 class="mt-4 mb-3 text-purple">
+            <i class="fa-solid fa-basket-shopping fa-icon"></i>المنتجات المطلوبة:
+        </h5>
+        
+        <table class="invoice-table table">
+            <thead>
+                <tr>
+                    <th>المنتج</th>
+                    <th>الكمية</th>
+                    <th>السعر</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.product.price_after_tax|floatformat:2 }} ريال</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="total-box text-center mt-4">
+            <p class="lead mb-0">
+                <i class="fa-solid fa-calculator fa-icon"></i>المجموع: 
+                <span class="h3">{{ total_price|floatformat:2 }}</span> ريال
+            </p>
+        </div>
+
+        <div class="text-center mt-4">
+            <button onclick="window.print()" class="btn btn-lg btn-purple">
+                <i class="fa-solid fa-print"></i> طباعة الفاتورة
+            </button>
+        </div>
+    </div>
+</div>
+
+<style media="print">
+    body { background: white !important; }
+    .invoice-container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+    }
+    .fa-icon, button { display: none !important; }
+</style>
+
+{% endblock %}
