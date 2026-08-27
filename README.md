@@ -1,9 +1,5 @@
 # E-Commerce Store
 
-## Note
-Built during the Tuwaiq Academy Django bootcamp (Mar 2025) as a learning project.
-Kept as-is to reflect the original coursework.
-
 A full-stack e-commerce web application built with Django, covering the shopping
 flow from product browsing to invoice generation.
 
@@ -47,6 +43,8 @@ python manage.py runserver
 Open `http://127.0.0.1:8000/`
 
 ## Notes
+- Built during the Tuwaiq Academy Django bootcamp (Mar 2025) as a learning project,
+  kept as-is to reflect the original coursework
 - Payment gateway integration is out of scope — checkout completes with invoice generation
 - `DEBUG = True` and the default `SECRET_KEY` are development settings only
 
