@@ -1,5 +1,9 @@
 # E-Commerce Store
 
+## Note
+Built during the Tuwaiq Academy Django bootcamp (Mar 2025) as a learning project.
+Kept as-is to reflect the original coursework.
+
 A full-stack e-commerce web application built with Django, covering the shopping
 flow from product browsing to invoice generation.
 
